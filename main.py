@@ -4,7 +4,7 @@ from enum_lookups import action_checker
 key_sequence = []
 
 def on_press(key):
-    print("Key pressed: {0}".format(key))
+    print(f'\nKey pressed: {key}')
     concat_string = ""
     key_sequence.append(key)
     print(key_sequence)
