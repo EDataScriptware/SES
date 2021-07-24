@@ -1,5 +1,5 @@
 from pynput.keyboard import Listener
-from enum_lookups import action_checker
+from utility import action_checker
 
 key_sequence = []
 
