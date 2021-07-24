@@ -8,5 +8,8 @@ pynput = "*"
 
 [dev-packages]
 
+[scripts]
+pytest="python3 main.py"
+
 [requires]
 python_version = "3.9"
