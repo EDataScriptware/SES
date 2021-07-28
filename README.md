@@ -11,3 +11,8 @@ To send a message across the network to clients specified as the same party with
 - [ ] Create server and client so that it may send messages over.
 - [ ] Experiment and improve functionality and add more customizations.
 - [ ] Allow the output to show as an overlay rather than in a terminal or any external window.
+
+___________________________________
+
+To use the app, type python3 main.py while in the directory.
+If it say no module named 'pynput' then type 'pip install pynput'
