@@ -16,3 +16,4 @@ ___________________________________
 
 To use the app, type python3 main.py while in the directory.
 If it say no module named 'pynput' then type 'pip install pynput'
+Similarlly, use 'pip3 install discord-webhook' if it say it lacks this.
