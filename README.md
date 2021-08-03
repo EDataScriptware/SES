@@ -8,7 +8,7 @@ To send a message across the network to clients specified as the same party with
 - [X] Create a simple app that detects your specified keystroke even if your window focus is on your game.
 - [X] Output the detections (example: pressing numpad 6 three times while in a game)
 - [X] Allow user customization to say something else such as “The enemy is on the left.” instead of “numpad 6 has been pressed” as well as allowing other commands such as VGS or communication wheel (which involve using the mouse).
-- [ ] Create server and client so that it may send messages over.
+- [X] Create server and client so that it may send messages over.
 - [ ] Experiment and improve functionality and add more customizations.
 - [ ] Allow the output to show as an overlay rather than in a terminal or any external window.
 

@@ -1,4 +1,3 @@
-
 game_commands = {
     'vbb': 'Attack!',
     'vbb': 'Enemy Behind You!',
