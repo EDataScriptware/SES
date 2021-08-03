@@ -1,30 +1,30 @@
-{
-    "vbb": "Enemy Behind You!",
+{   
     "vbs": "Enemy spotted!",
-    "vcc": "Be careful!",
     "vdd": "Defend!",
     "vdb": "Defend the base!",
-    "vdo": "Defend the objective!"
+    "vdo": "Defend the objective!",
     "vff": "Enemy missing!",
-    "vgg": "Gank!",
-    "vgh": "Go rescue!",
+    "vgo": "Gank!",
     "vhh": "Help!",
     "vhs": "Need healing!",
     "vii": "Enemy incoming!",
-    "vrr": "Retreat!",
     "vrs": "Save yourself!",
     "vva": "Ok!",
-<<<<<<< Updated upstream
-    "vvy": "Yes!",
-    "vvn": "No!",
-    "vvc": "Completed!",
-=======
     "vvy": "Go help the injured!",
     "vvn": "Killer is on me!",
->>>>>>> Stashed changes
     "vvc": "Sorry!",
     "vvt": "Thanks!",
     "vvw": "Wait!",
+    "vgg": "Good game.",
     "vez": "Good game, EZ!",
-    "vex": "Get gud, noob."
+    "vex": "Get gud, noob.",
+    "vbb": "There's a killer behind you!",
+    "vrg": "I'm gonna repair this generator.",
+    "vrr": "Retreat!",
+    "vcc": "Be careful!",
+    "vdk": "Go distract the killer.",
+    "vsh": "I'll save you from the hook!",
+    "vnn": "No.",
+    "vyy": "Yes.",
+    "vlt": "Leave them! They're done for!"
 }
