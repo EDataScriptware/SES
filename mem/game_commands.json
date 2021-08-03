@@ -14,9 +14,14 @@
     "vrr": "Retreat!",
     "vrs": "Save yourself!",
     "vva": "Ok!",
+<<<<<<< Updated upstream
     "vvy": "Yes!",
     "vvn": "No!",
     "vvc": "Completed!",
+=======
+    "vvy": "Go help the injured!",
+    "vvn": "Killer is on me!",
+>>>>>>> Stashed changes
     "vvc": "Sorry!",
     "vvt": "Thanks!",
     "vvw": "Wait!",
