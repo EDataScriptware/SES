@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pynput = "*"
+discord-webhook = "*"
 
 [dev-packages]
 
