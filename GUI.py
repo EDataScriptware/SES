@@ -49,13 +49,13 @@ button_phasmophobia.grid(column=0, row=2, sticky=tk.N+tk.S+tk.W+tk.E)
 def start_dead_by_daylight(event):
     name = nameEntry.get()
     game = "dead_by_daylight"
-    print("Startng Dead by Daylight...")
+    print("Using Dead by Daylight pings")
     everything(name, game).start()
 
 def start_phasmophobia(event):
     name = nameEntry.get()
     game = "phasmophobia"
-    print("Startng Phasmophobia...")
+    print("Using Phasmophobia pings")
     everything(name, game).start()
 
 
