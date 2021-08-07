@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from util.keystroke_listener import everything
+import threading
 
 window = tk.Tk()
 window.geometry("625x300") 
@@ -98,18 +99,17 @@ def start_dead_by_daylight(event):
     name = nameEntry.get()
     game = "dead_by_daylight"
     print("Using Dead by Daylight pings")
-    everything(name, game).start()
+    x = threading.Thread(target=everything, args=(name, game))
+    x.start()
 
 def start_phasmophobia(event):
     name = nameEntry.get()
     game = "phasmophobia"
     print("Using Phasmophobia pings")
-    everything(name, game).start()
-
-
+    x = threading.Thread(target=everything, args=(name, game))
+    x.start()
 
 button_dead_by_daylight.bind("<Button-1>", start_dead_by_daylight)
 button_phasmophobia.bind("<Button-1>", start_phasmophobia)
-
 
 window.mainloop()
