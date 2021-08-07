@@ -95,22 +95,33 @@ button_dead_by_daylight.grid(column=0, row=1, sticky=tk.N+tk.S+tk.W+tk.E)
 button_phasmophobia.grid(column=0, row=2, sticky=tk.N+tk.S+tk.W+tk.E)
 button_overwatch.grid(column=0, row=3, sticky=tk.N+tk.S+tk.W+tk.E)
 
+running = False
 
 def start_dead_by_daylight(event):
-    name = nameEntry.get()
-    game = "dead_by_daylight"
-    print("Using Dead by Daylight pings")
-    x = threading.Thread(target=everything, args=(name, game))
-    x.start()
-    logged_on(name, "Dead by Daylight")
+    global running
+    if not running:
+        name = nameEntry.get()
+        game = "dead_by_daylight"
+        print("Using Dead by Daylight pings")
+        x = threading.Thread(target=everything, args=(name, game))
+        x.start()
+        running = True
+        logged_on(name, "Dead by Daylight")
+    else:
+        print("A game is already running!")
 
 def start_phasmophobia(event):
-    name = nameEntry.get()
-    game = "phasmophobia"
-    print("Using Phasmophobia pings")
-    x = threading.Thread(target=everything, args=(name, game))
-    x.start()
-    logged_on(name, "Phasmophobia")
+    global running
+    if not running:
+        name = nameEntry.get()
+        game = "phasmophobia"
+        print("Using Phasmophobia pings")
+        x = threading.Thread(target=everything, args=(name, game))
+        x.start()
+        running = True
+        logged_on(name, "Phasmophobia")
+    else:
+        print("A game is already running!")
 
 button_dead_by_daylight.bind("<Button-1>", start_dead_by_daylight)
 button_phasmophobia.bind("<Button-1>", start_phasmophobia)
