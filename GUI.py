@@ -81,8 +81,17 @@ button_phasmophobia = tk.Button(
     fg="grey"
 )
 
+button_overwatch = tk.Button(
+    text="Play Overwatch",
+    width=25,
+    height=5,
+    bg="white",
+    fg="grey"
+)
+
 button_dead_by_daylight.grid(column=0, row=1, sticky=tk.N+tk.S+tk.W+tk.E)
 button_phasmophobia.grid(column=0, row=2, sticky=tk.N+tk.S+tk.W+tk.E)
+button_overwatch.grid(column=0, row=3, sticky=tk.N+tk.S+tk.W+tk.E)
 
 
 def start_dead_by_daylight(event):
