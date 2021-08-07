@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from util.keystroke_listener import everything
+from util.discord_file import logged_on
 import threading
 
 window = tk.Tk()
@@ -33,8 +34,8 @@ filemenu.add_command(label="New", command=donothing)
 filemenu.add_command(label="Open", command=donothing)
 filemenu.add_command(label="Save", command=donothing)
 filemenu.add_command(label="Export", command=donothing)
-#filemenu.add_separator()
-filemenu.add_command(label="Exit", command=window.quit)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=exit)
 menubar.add_cascade(label="File", menu=filemenu)
 
 editmenu = Menu(menubar, tearoff=0)
@@ -101,6 +102,7 @@ def start_dead_by_daylight(event):
     print("Using Dead by Daylight pings")
     x = threading.Thread(target=everything, args=(name, game))
     x.start()
+    logged_on(name, "Dead by Daylight")
 
 def start_phasmophobia(event):
     name = nameEntry.get()
@@ -108,6 +110,7 @@ def start_phasmophobia(event):
     print("Using Phasmophobia pings")
     x = threading.Thread(target=everything, args=(name, game))
     x.start()
+    logged_on(name, "Phasmophobia")
 
 button_dead_by_daylight.bind("<Button-1>", start_dead_by_daylight)
 button_phasmophobia.bind("<Button-1>", start_phasmophobia)
