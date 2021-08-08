@@ -3,11 +3,12 @@ from util.discord_file import send_message
 from util.utility import action_checker
 
 combo = False
-def everything(name, game): 
+def keystrokes_detector(name, game, window): 
     key_sequence = []
-
+    
     def on_press(key):
         global combo
+        check_window_running(window)
         print("Key pressed: {0}".format(key))
         concat_string = ""
         if combo:
@@ -31,3 +32,12 @@ def everything(name, game):
 
     with Listener(on_press=on_press) as listener:
         listener.join()
+
+
+def check_window_running(window):
+    try:
+        if 'normal' == window.state():
+            pass
+    except: 
+        print('The window is no longer running.')
+        exit(0)
