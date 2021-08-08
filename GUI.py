@@ -39,10 +39,9 @@ nameEntry.pack()
 menubar_creator(window)
 
 def start_keystroke(name):
-    game = name.replace(' ', '_').lower()
     global running
     if not running:
-        x = threading.Thread(target=keystrokes_detector, args=(name, game, window))
+        x = threading.Thread(target=keystrokes_detector, args=(profile_name, name, window))
         x.start()
         running = True
         logged_on(profile_name, name)

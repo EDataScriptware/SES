@@ -6,7 +6,7 @@ from .logger import errorLogger, infoLogger
 combo = False
 def keystrokes_detector(name, game, window): 
     key_sequence = []
-    
+    game = game.replace(' ', '_').lower()
     def on_press(key):
         global combo
         check_window_running(window)
