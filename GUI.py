@@ -7,7 +7,6 @@ from util.utility import profile_getter
 from util.discord_file import logged_on
 from util.logger import warningLogger
 from menubar import menubar_creator
-from functools import partial
 
 window = tk.Tk()
 window.title("SES")
