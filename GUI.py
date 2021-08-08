@@ -1,6 +1,5 @@
 import tkinter as tk
 import threading
-from util.logger import warningLogger
 
 from util.keystroke_listener import keystrokes_detector
 from util.utility import profile_getter
