@@ -8,19 +8,19 @@ from menubar import menubar_creator
 from functools import partial
 
 window = tk.Tk()
-window.geometry("625x300") 
 window.title("SES")
 
 greeting = tk.Label(text="SES Project\nCurrently in development.")
-greeting.grid(column=1, row=0)
+greeting.pack()
 
 profile = profile_getter()
 nameEntry = tk.Entry()
+profile_name = profile.get('user_name')
 
-if not profile.get('user_name'):
+if not profile_name:
     nameEntry.insert(0, 'Enter your name...')
 else: 
-    nameEntry.insert(0, profile.get('user_name'))
+    nameEntry.insert(0, profile_name)
 
 firstclick = True
 
@@ -32,37 +32,48 @@ def on_entry_click(event):
         nameEntry.delete(0, "end")
 
 nameEntry.bind('<FocusIn>', on_entry_click)
-nameEntry.grid(column=0, row=0)
+nameEntry.pack()
 
 menubar_creator(window)
 
-def start_keystroke(event, name):
+def start_keystroke(name):
+    game = name.replace(' ', '_').lower()
     global running
     if not running:
         x = threading.Thread(target=keystrokes_detector, args=(name, game, window))
         x.start()
         running = True
-        logged_on(name, display_game_text)
+        logged_on(profile_name, name)
     else:
         print("A game is already running!")
 
+gameFrame = tk.Frame(window)
+gameFrame.pack()
+
+
 game_list = profile.get('game_list')
-game_list_counter = 1
+game_list_counter = 0
+column = 0
+row = 0
 
 for game in game_list:
-
+    if (game_list_counter % 4) == 0:
+        row = 0
+        column += 1 
+    
     display_game_text = game.replace('_', ' ').title()
-    print(display_game_text)
     button = tk.Button(
+        gameFrame,
         text=f'Play {display_game_text}',
         width=25,
         height=5,
         bg="white",
-        fg="black"
+        fg="black",
+        command=lambda name=display_game_text: start_keystroke(name)
         )
-
-    button.grid(column=0, row=game_list_counter, sticky=tk.N+tk.S+tk.W+tk.E)
-    button.bind("<Button-1>", lambda event: start_keystroke(event, game))
+        
+    button.grid(row=row, column=column)
+    row += 1
     game_list_counter += 1
 
 
