@@ -1,4 +1,5 @@
 import platform
+from sys import exit
 
 if platform.system() != "Windows":
     from pynput.keyboard import Listener
@@ -45,4 +46,4 @@ def check_window_running(window):
             pass
     except: 
         infoLogger('The window is no longer running.')
-        exit(0)
+        exit()
