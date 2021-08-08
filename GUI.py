@@ -1,9 +1,11 @@
 import tkinter as tk
-from tkinter import *
-from util.keystroke_listener import keystrokes_detector
-from util.discord_file import logged_on
 import threading
+
+from util.keystroke_listener import keystrokes_detector
+from util.utility import profile_getter
+from util.discord_file import logged_on
 from menubar import menubar_creator
+from functools import partial
 
 window = tk.Tk()
 window.geometry("625x300") 
@@ -12,81 +14,58 @@ window.title("SES")
 greeting = tk.Label(text="SES Project\nCurrently in development.")
 greeting.grid(column=1, row=0)
 
+profile = profile_getter()
 nameEntry = tk.Entry()
-nameEntry.insert(0, 'Enter your name...')
+
+if not profile.get('user_name'):
+    nameEntry.insert(0, 'Enter your name...')
+else: 
+    nameEntry.insert(0, profile.get('user_name'))
 
 firstclick = True
 
 def on_entry_click(event):
-    """function that gets called whenever name_entry is clicked"""        
     global firstclick
 
-    if firstclick: # if this is the first time they clicked it
+    if firstclick: 
         firstclick = False
-        nameEntry.delete(0, "end") # delete all the text in the entry
+        nameEntry.delete(0, "end")
 
-menubar_creator(window)
-
-#name box
 nameEntry.bind('<FocusIn>', on_entry_click)
 nameEntry.grid(column=0, row=0)
 
-#buttons
-button_dead_by_daylight = tk.Button(
-    text="Play Dead by Daylight",
-    width=25,
-    height=5,
-    bg="white",
-    fg="black"
-)
+menubar_creator(window)
 
-button_phasmophobia = tk.Button(
-    text="Play Phasmophobia",
-    width=25,
-    height=5,
-    bg="white",
-    fg="grey"
-)
+def start_keystroke(event, name):
+    global running
+    if not running:
+        x = threading.Thread(target=keystrokes_detector, args=(name, game, window))
+        x.start()
+        running = True
+        logged_on(name, display_game_text)
+    else:
+        print("A game is already running!")
 
-button_overwatch = tk.Button(
-    text="Play Overwatch",
-    width=25,
-    height=5,
-    bg="white",
-    fg="grey"
-)
+game_list = profile.get('game_list')
+game_list_counter = 1
 
-button_dead_by_daylight.grid(column=0, row=1, sticky=tk.N+tk.S+tk.W+tk.E)
-button_phasmophobia.grid(column=0, row=2, sticky=tk.N+tk.S+tk.W+tk.E)
-button_overwatch.grid(column=0, row=3, sticky=tk.N+tk.S+tk.W+tk.E)
+for game in game_list:
+
+    display_game_text = game.replace('_', ' ').title()
+    print(display_game_text)
+    button = tk.Button(
+        text=f'Play {display_game_text}',
+        width=25,
+        height=5,
+        bg="white",
+        fg="black"
+        )
+
+    button.grid(column=0, row=game_list_counter, sticky=tk.N+tk.S+tk.W+tk.E)
+    button.bind("<Button-1>", lambda event: start_keystroke(event, game))
+    game_list_counter += 1
+
+
 
 running = False
-
-def start_dead_by_daylight(event):
-    global running
-    if not running:
-        name = nameEntry.get()
-        game = "dead_by_daylight"
-        x = threading.Thread(target=keystrokes_detector, args=(name, game, window))
-        x.start()
-        running = True
-        logged_on(name, "Dead by Daylight")
-    else:
-        print("A game is already running!")
-
-def start_phasmophobia(event):
-    global running
-    if not running:
-        name = nameEntry.get()
-        game = "phasmophobia"
-        x = threading.Thread(target=keystrokes_detector, args=(name, game, window))
-        x.start()
-        running = True
-        logged_on(name, "Phasmophobia")
-    else:
-        print("A game is already running!")
-
-button_dead_by_daylight.bind("<Button-1>", start_dead_by_daylight)
-button_phasmophobia.bind("<Button-1>", start_phasmophobia)
-
 window.mainloop()
