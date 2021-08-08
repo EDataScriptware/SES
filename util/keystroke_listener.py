@@ -1,6 +1,7 @@
 from pynput.keyboard import Listener
-from util.discord_file import send_message
-from util.utility import action_checker
+from .discord_file import send_message
+from .utility import action_checker
+from .logger import errorLogger, infoLogger
 
 combo = False
 def keystrokes_detector(name, game, window): 
@@ -9,25 +10,25 @@ def keystrokes_detector(name, game, window):
     def on_press(key):
         global combo
         check_window_running(window)
-        print("Key pressed: {0}".format(key))
+        infoLogger("Key pressed: {0}".format(key))
         concat_string = ""
         if combo:
             key_sequence.append(key)
-            print(key_sequence)
+            infoLogger(key_sequence)
         if(format(key).strip("'").lower() == 'v' and not combo):
             combo = True
             key_sequence.append(key)
-            print(key_sequence)
+            infoLogger(key_sequence)
         if len(key_sequence) == 3:
             combo = False
             for key_sequence_value in key_sequence:
                 concat_string += str(key_sequence_value).strip("'").lower()
             try:
-                print(name + ": " + action_checker(concat_string, game))
+                infoLogger(name + ": " + action_checker(concat_string, game))
                 send_message(name + ": " + action_checker(concat_string, game))
             except Exception as e:
-                print(e)
-                print(f'{concat_string} command not found!')
+                errorLogger(e)
+                infoLogger(f'{concat_string} command not found!')
             key_sequence.clear()
 
     with Listener(on_press=on_press) as listener:
@@ -39,5 +40,5 @@ def check_window_running(window):
         if 'normal' == window.state():
             pass
     except: 
-        print('The window is no longer running.')
+        infoLogger('The window is no longer running.')
         exit(0)

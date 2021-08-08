@@ -1,9 +1,11 @@
 import tkinter as tk
 import threading
+from util.logger import warningLogger
 
 from util.keystroke_listener import keystrokes_detector
 from util.utility import profile_getter
 from util.discord_file import logged_on
+from util.logger import warningLogger
 from menubar import menubar_creator
 from functools import partial
 
@@ -45,11 +47,10 @@ def start_keystroke(name):
         running = True
         logged_on(profile_name, name)
     else:
-        print("A game is already running!")
+        warningLogger("A game is already running!")
 
 gameFrame = tk.Frame(window)
 gameFrame.pack()
-
 
 game_list = profile.get('game_list')
 game_list_counter = 0
@@ -75,7 +76,6 @@ for game in game_list:
     button.grid(row=row, column=column)
     row += 1
     game_list_counter += 1
-
 
 
 running = False
