@@ -22,6 +22,5 @@ ___________________________________
 
 ## Deploying
 ## WINDOWS - Turning Python into .exe
-1. Run the following command `pyinstaller --onefile GUI.py --windowed --add-data "util/profile.json;util/game_commands.json"  `
-2. Move the **profile.json** and **game_commands.json** file into the *dist* folder. 
-3. Run the GUI.exe
+1. Run the following command `python setup.py py2exe`
+2. Run the GUI.exe
