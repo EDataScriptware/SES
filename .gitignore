@@ -114,3 +114,4 @@ dmypy.json
 .pyre/
 util/game_commands.json
 util/profile.json
+*.json
