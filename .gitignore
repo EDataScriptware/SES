@@ -112,3 +112,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+util/game_commands.json
+util/profile.json
+*.json
+*.json

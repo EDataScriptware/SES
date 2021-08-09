@@ -9,11 +9,18 @@ To send a message across the network to clients specified as the same party with
 - [X] Output the detections (example: pressing numpad 6 three times while in a game)
 - [X] Allow user customization to say something else such as “The enemy is on the left.” instead of “numpad 6 has been pressed” as well as allowing other commands such as VGS or communication wheel (which involve using the mouse).
 - [X] Create server and client so that it may send messages over.
-- [ ] Experiment and improve functionality and add more customizations.
-- [ ] Allow the output to show as an overlay rather than in a terminal or any external window.
+- [X] Experiment and improve functionality and add more customizations.
+- [ ] ~~Allow the output to show as an overlay rather than in a terminal or any external window.~~
 
 ___________________________________
 
 To use the app, type python3 main.py while in the directory.
 If it say no module named 'pynput' then type 'pip install pynput'
 Similarlly, use 'pip3 install discord-webhook' if it say it lacks this.
+
+___________________________________
+
+## Deploying
+## WINDOWS - Turning Python into .exe
+1. Run the following command `python setup.py py2exe`
+2. Run the GUI.exe
