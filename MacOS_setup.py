@@ -6,7 +6,6 @@ Usage:
 """
 
 from setuptools import setup
-# import pkg_resources.py2_warn
 
 APP = ['GUI.py']
 DATA_FILES = [

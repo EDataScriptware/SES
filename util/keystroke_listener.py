@@ -3,6 +3,8 @@ from sys import exit
 
 if platform.system() == "Windows":
     from pynput.keyboard import Listener
+else: 
+    from pynput import keyboard
 
 from .discord_file import send_message
 from .utility import action_checker
@@ -36,8 +38,12 @@ def keystrokes_detector(name, game, window):
                 infoLogger(f'{concat_string} command not found!')
             key_sequence.clear()
 
-    with Listener(on_press=on_press) as listener:
-        listener.join()
+    if platform.system() == "Windows":
+        with Listener(on_press=on_press) as listener:
+            listener.join()
+    else: 
+        with keyboard.Listener(on_press=on_press) as listener:
+            listener.join()
 
 
 def check_window_running(window):
