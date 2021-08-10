@@ -2,19 +2,23 @@ import tkinter as tk
 import threading
 
 from util.keystroke_listener import keystrokes_detector
-from util.utility import profile_getter
+from util.utility import profile_getter, save_name
 from util.discord_file import logged_on
 from util.logger import warningLogger
 from menubar import menubar_creator
 
 window = tk.Tk()
 window.title("SES")
+menubar_creator(window)
 
 greeting = tk.Label(text="SES Project\nCurrently in development.")
 greeting.pack()
 
+nameFrame = tk.Frame(window)
+nameFrame.pack()
+
 profile = profile_getter()
-nameEntry = tk.Entry()
+nameEntry = tk.Entry(nameFrame)
 profile_name = profile.get('user_name')
 
 if not profile_name:
@@ -32,9 +36,27 @@ def on_entry_click(event):
         nameEntry.delete(0, "end")
 
 nameEntry.bind('<FocusIn>', on_entry_click)
-nameEntry.pack()
 
-menubar_creator(window)
+
+nameLabel = tk.Label(
+    nameFrame, 
+    text="Name: ")
+
+nameLabel.pack(side=tk.LEFT)
+nameEntry.pack(side=tk.LEFT)
+
+saveNameBtn = tk.Button(
+        nameFrame,
+        text=f'Save',
+        width=10,
+        height=1,
+        bg="white",
+        fg="black",
+        command=lambda name=nameEntry.get(): save_name(name)
+)
+
+
+saveNameBtn.pack(side=tk.LEFT)
 
 def start_keystroke(name):
     global running
