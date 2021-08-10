@@ -24,3 +24,10 @@ def profile_getter():
             profile = profile_creator()
     
     return profile
+
+def save_name(newName):
+    print(newName)
+    profile = profile_getter()
+    profile['user_name'] = newName
+    print(profile['user_name'])
+    print(profile)
