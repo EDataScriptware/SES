@@ -1,5 +1,6 @@
 import tkinter as tk
 import threading
+import ctypes
 
 from util.keystroke_listener import keystrokes_detector
 from util.utility import profile_getter
@@ -16,6 +17,11 @@ greeting.pack()
 profile = profile_getter()
 nameEntry = tk.Entry()
 profile_name = profile.get('user_name')
+
+#start
+ctypes.windll.kernel32.FreeConsole()
+log = open("logs.txt", "w")
+log.close()
 
 if not profile_name:
     nameEntry.insert(0, 'Enter your name...')

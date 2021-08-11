@@ -15,7 +15,7 @@ def keystrokes_detector(name, game, window):
     def on_press(key):
         global combo
         check_window_running(window)
-        infoLogger("Key pressed: {0}".format(key))
+        #infoLogger("Key pressed: {0}".format(key))
         concat_string = ""
         if combo:
             key_sequence.append(key)
