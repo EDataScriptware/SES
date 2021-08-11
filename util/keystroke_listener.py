@@ -17,10 +17,18 @@ def keystrokes_detector(name, game, window):
         check_window_running(window)
         #infoLogger("Key pressed: {0}".format(key))
         concat_string = ""
+        keyPressed = format(key).strip("'").lower()
+        if(keyPressed != 'v' and not combo):
+            try:
+                infoLogger(name + ": " + action_checker(keyPressed, game))
+                send_message(name + ": " + action_checker(keyPressed, game))
+            except Exception as e:
+                errorLogger(e)
+                #infoLogger(f'{keyPressed} command not found!')
         if combo:
             key_sequence.append(key)
             infoLogger(key_sequence)
-        if(format(key).strip("'").lower() == 'v' and not combo):
+        if(keyPressed == 'v' and not combo):
             combo = True
             key_sequence.append(key)
             infoLogger(key_sequence)
