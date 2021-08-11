@@ -116,3 +116,4 @@ util/game_commands.json
 util/profile.json
 *.json
 *.json
+logs.txt
