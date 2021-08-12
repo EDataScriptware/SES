@@ -25,6 +25,7 @@ def keystrokes_detector(name, game, window):
             except Exception as e:
                 errorLogger(e)
                 #infoLogger(f'{keyPressed} command not found!')
+                #comment the line above in to print other commands
         if combo:
             key_sequence.append(key)
             infoLogger(key_sequence)

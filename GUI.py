@@ -3,7 +3,7 @@ import threading
 import ctypes
 
 from util.keystroke_listener import keystrokes_detector
-from util.utility import profile_getter
+from util.utility import profile_get, profile_name_get, save_name
 from util.discord_file import logged_on
 from util.logger import warningLogger
 from menubar import menubar_creator
@@ -14,9 +14,12 @@ window.title("SES")
 greeting = tk.Label(text="SES Project\nCurrently in development.")
 greeting.pack()
 
-profile = profile_getter()
+nameFrame = tk.Frame(window)
+nameFrame.pack()
+
+profile = profile_get()
 nameEntry = tk.Entry()
-profile_name = profile.get('user_name')
+profile_name = profile_name_get()
 
 #start
 ctypes.windll.kernel32.FreeConsole()
@@ -38,7 +41,27 @@ def on_entry_click(event):
         nameEntry.delete(0, "end")
 
 nameEntry.bind('<FocusIn>', on_entry_click)
-nameEntry.pack()
+
+
+nameLabel = tk.Label(
+    nameFrame,
+    text="Name: ")
+
+nameLabel.pack(side=tk.LEFT)
+nameEntry.pack(side=tk.LEFT)
+
+saveNameBtn = tk.Button(
+    nameFrame,
+    text=f'Save',
+    width=10,
+    height=1,
+    bg="white",
+    fg="black",
+    command=lambda name=nameEntry.get(): save_name(nameEntry)
+)
+
+
+saveNameBtn.pack(side=tk.LEFT)
 
 menubar_creator(window)
 
@@ -66,6 +89,8 @@ for game in game_list:
         column += 1 
     
     display_game_text = game.replace('_', ' ').title()
+    if (display_game_text == "Dead By Daylight"):
+        display_game_text = "Dead by Daylight"
     button = tk.Button(
         gameFrame,
         text=f'Play {display_game_text}',
